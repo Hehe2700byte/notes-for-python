@@ -34,6 +34,12 @@ else:
 finally:
     print("We can clean up resources here.")#No matter what happens, "finally" block will be run.
 
+#We called errors expect syntax erorr as exception.
+#assert: to say something is true
+n = int(input("Enter a positive value: "))
+assert n > 0
+#If you enter a non-positive value, the program throws an AssertionError exception.
+
 #while-else
 count = 0
 while count < 5:

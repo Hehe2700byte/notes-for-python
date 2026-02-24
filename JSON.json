@@ -1,0 +1,20 @@
+{
+    "color" : "Purple",
+    "visibility" : true,
+    "num1" : 210,
+    "num2" : 1.0E+2,
+    "employee": {
+        "name": "John",
+        "age": 30,
+        "city": "New York"
+    },
+    "employees": [
+        "John", "Anna", "Peter"
+    ],
+    "ids": [
+        {"id" : 1},
+        {"id" : 2},
+        {"id" : 3}
+    ],
+    "grade" : null
+}
