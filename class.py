@@ -1,46 +1,52 @@
-class Human:
-    species = 'H.sapines' #class attribute
-    def __init__(self, name): #like the constructor in C++ used to initialize an instance
-        self.name = name#instance attributes
-        self._age = 0#The leading undercore indicates the variable is intended to be used internally. Just for readability.
-        #instance method
-    def say(self, msg):#all method take "self" as the first argument
-        print("{name}: {message}".format(self.name, msg))
+class Student:
+    #class attributes and variables
+    school = 'CUHK'
+    species = 'human'
+    count = 0
+    #Both of the variables are regarded as class attributes. However, only the variable 'count' can be class variable.
+    #class variable: a class attribute used as a shared data
+    #Class attributes are shared among all instances of a class.
 
-    @classmethod#can only access class attributes
-    def get_species(cls):
-        return cls.species
-        
-    @staticmethod#called without a class or instance
-    def grunt():
-        return "*grunt*"
+    #initializer(constructor)
+    def __init__(self, name, age, one_pass):
+        self.name = name#instance variable
+        self.age = age#instance variable
+        self.count += 1
+        self.__one_pass = one_pass#Encapsulation: Made this information private. (Double underline)
+        #Encapsulation: But if we use single leading underline, it just serves as a sign, not enforced by Python interpreter.
+
+    #instance method: Have to use self as the first parameter
+    def introduce(self):
+        print(f"My name is {self.name}.")
+
+    #Decorators built in Python
+    @classmethod#Can access class variable, with first parameter cls
+    def Change_School(cls, new_school):
+        cls.school = new_school
+    @staticmethod#Cannot access cls or self, just like normal function.
+    def add(a, b):
+        return a + b
+    @property#The first argument is self. Attribute-like method
+    def info(self):
+        return self.name, self.age, self.count
+    #When a property is called, there's no need to add parentheses.
+
+    #special method: Built-in method in python
+    #__init__ is just one of them
+    def __str__(self):
+        return f"A {self.school} student named {self.name}, age {self.age}"
+    #__str__ decides how an instance was printed.
+    #operator overloading
+    def __add__(self, other):
+        return self.age + other.age
+    #__ld__, __le__, __eq__ ...
+
+    #destructor
+    def __del__(self):
+        print("Successfully destructed.")
     
-    @property#can access class attributes and instance attributes
-    def age(self):
-        return self.age
     
-#inheritance
-class Superhero(Human):
-    #if the child class should inherit all of the parent's definitions without any modifications, you can use the keyword "pass".
-    #You can also override parents' attributes
-    species = 'SuperHuman'
-    #child class can inherit arguments of its parents and add new arguments
-    def __init__(self, name, movie = False, superpowers = ["super strength", "bulletproofing"]):
-        self.fictional = True
-        self.movie = movie
-        self.superpowers = superpowers
-        #in this case, __init__ has been overrided in the child class
-        #so if you want __init__ of parent class to still be called, use function "super()"
-        super().__init__(name)
-
-    #addtional instance attributes
-    def boast(self):
-        for power in self.superpowers:
-            print("I wield the power of {pow}".format(pow = power))
-
-#multiple inheritance
-
-
-
-
-
+student_example1 = Student('Tom', 18)
+print(student_example1)
+student_example2 = Student('Tina', 19)
+print(str(student_example1 + student_example2))
