@@ -162,3 +162,41 @@ d = D()
 #Actually, in python, super means "call next class in MRO"
 #SO the output will be the reverse of MRO.
 
+#Mixin: a way of application of multiple inheritance (let base class equipped with more attributes)
+class EqualityMixin:
+    def __eq__(self, other):
+        return (isinstance(other, self.__class__) and self.__dict__ == other.__dict__)
+    def __ne__(self, other):
+        return not self.__eq__(other)
+    
+class Point:
+    def __init__(self, x = 0, y = 0):
+        self.x = x
+        self.y = y
+
+class ComparablePoint(EqualityMixin, Point):
+    pass
+
+p = ComparablePoint(3, 4)
+r = ComparablePoint(3, 2)
+
+print(p == r)#False
+
+#class membership test: isinstance(obj, class_name)
+
+#polymorphism: it refers to a programming language's ability to process objects differently depending on their data type or class.
+class Animal:
+    def speak(self):
+        pass
+
+class Dogs(Animal):
+    def speak(self):
+        print("Dogs speak")
+
+class Birds(Animal):
+    def speak(self):
+        print("Birds speak")
+
+animals = [Dogs(), Birds()]
+for animal in animals:
+    animal.speak()
