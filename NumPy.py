@@ -199,3 +199,11 @@ np.argmin(a, axis = 1)
 np.any(a, axis = None)
 np.all(a, axis = None)
 np.not_zero(a, axis = None)'''
+
+#image processing
+from PIL import Image
+
+im = np.array(Image.open('Sample.png'))
+print(im.shape)
+
+
