@@ -50,6 +50,8 @@ student_example1 = Student('Tom', 18)
 print(student_example1)
 student_example2 = Student('Tina', 19)
 print(str(student_example1 + student_example2))
+'''Use of instance method'''
+student_example1.introduce()#python will automatically assign the "self" parameter
 
 #inheritance
 class grade(Student):

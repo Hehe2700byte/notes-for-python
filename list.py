@@ -59,7 +59,7 @@ li2 = list(li)
 li3 = li.copy()
 #deep copy(copy all layers)
 import copy
-li4 = copy.deepcopy(li)
+li4 = copy.deepcopy(li)#This only copies list, not copies object
 li = [0] * 5#li->[0, 0, 0, 0, 0]
 
 #declare a multidimensional list
